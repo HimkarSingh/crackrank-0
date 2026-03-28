@@ -10,264 +10,20 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "12.2.3 (519615d)"
+    PostgrestVersion: "14.4"
   }
   public: {
     Tables: {
-      discussion_replies: {
-        Row: {
-          author_id: string
-          content: string
-          created_at: string
-          discussion_id: string
-          id: string
-          likes_count: number
-          updated_at: string
-        }
-        Insert: {
-          author_id: string
-          content: string
-          created_at?: string
-          discussion_id: string
-          id?: string
-          likes_count?: number
-          updated_at?: string
-        }
-        Update: {
-          author_id?: string
-          content?: string
-          created_at?: string
-          discussion_id?: string
-          id?: string
-          likes_count?: number
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "discussion_replies_discussion_id_fkey"
-            columns: ["discussion_id"]
-            isOneToOne: false
-            referencedRelation: "discussions"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      discussions: {
-        Row: {
-          author_id: string
-          category: string
-          content: string
-          created_at: string
-          id: string
-          is_important: boolean
-          is_pinned: boolean
-          likes_count: number
-          replies_count: number
-          title: string
-          updated_at: string
-        }
-        Insert: {
-          author_id: string
-          category?: string
-          content: string
-          created_at?: string
-          id?: string
-          is_important?: boolean
-          is_pinned?: boolean
-          likes_count?: number
-          replies_count?: number
-          title: string
-          updated_at?: string
-        }
-        Update: {
-          author_id?: string
-          category?: string
-          content?: string
-          created_at?: string
-          id?: string
-          is_important?: boolean
-          is_pinned?: boolean
-          likes_count?: number
-          replies_count?: number
-          title?: string
-          updated_at?: string
-        }
-        Relationships: []
-      }
-      problems: {
-        Row: {
-          acceptance_rate: number | null
-          companies: string[] | null
-          constraints: string[] | null
-          created_at: string
-          description: string
-          difficulty: string
-          examples: Json | null
-          function_signature: string | null
-          id: string
-          is_solved: boolean | null
-          starter_code: Json | null
-          test_cases: Json | null
-          title: string
-          topic: string
-          topics: string[] | null
-          updated_at: string
-        }
-        Insert: {
-          acceptance_rate?: number | null
-          companies?: string[] | null
-          constraints?: string[] | null
-          created_at?: string
-          description: string
-          difficulty: string
-          examples?: Json | null
-          function_signature?: string | null
-          id?: string
-          is_solved?: boolean | null
-          starter_code?: Json | null
-          test_cases?: Json | null
-          title: string
-          topic: string
-          topics?: string[] | null
-          updated_at?: string
-        }
-        Update: {
-          acceptance_rate?: number | null
-          companies?: string[] | null
-          constraints?: string[] | null
-          created_at?: string
-          description?: string
-          difficulty?: string
-          examples?: Json | null
-          function_signature?: string | null
-          id?: string
-          is_solved?: boolean | null
-          starter_code?: Json | null
-          test_cases?: Json | null
-          title?: string
-          topic?: string
-          topics?: string[] | null
-          updated_at?: string
-        }
-        Relationships: []
-      }
-      profiles: {
-        Row: {
-          avatar_url: string | null
-          bio: string | null
-          created_at: string
-          full_name: string | null
-          id: string
-          updated_at: string
-          user_id: string
-          username: string | null
-        }
-        Insert: {
-          avatar_url?: string | null
-          bio?: string | null
-          created_at?: string
-          full_name?: string | null
-          id?: string
-          updated_at?: string
-          user_id: string
-          username?: string | null
-        }
-        Update: {
-          avatar_url?: string | null
-          bio?: string | null
-          created_at?: string
-          full_name?: string | null
-          id?: string
-          updated_at?: string
-          user_id?: string
-          username?: string | null
-        }
-        Relationships: []
-      }
-      submissions: {
-        Row: {
-          code: string
-          created_at: string | null
-          error: string | null
-          id: string
-          language: string
-          output: string | null
-          passed: boolean | null
-          problem_id: string
-          testcases: Json | null
-          user_id: string
-        }
-        Insert: {
-          code: string
-          created_at?: string | null
-          error?: string | null
-          id?: string
-          language: string
-          output?: string | null
-          passed?: boolean | null
-          problem_id: string
-          testcases?: Json | null
-          user_id: string
-        }
-        Update: {
-          code?: string
-          created_at?: string | null
-          error?: string | null
-          id?: string
-          language?: string
-          output?: string | null
-          passed?: boolean | null
-          problem_id?: string
-          testcases?: Json | null
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "submissions_problem_id_fkey"
-            columns: ["problem_id"]
-            isOneToOne: false
-            referencedRelation: "problems"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      user_roles: {
-        Row: {
-          created_at: string
-          id: string
-          role: Database["public"]["Enums"]["app_role"]
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          role?: Database["public"]["Enums"]["app_role"]
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          role?: Database["public"]["Enums"]["app_role"]
-          user_id?: string
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      has_role: {
-        Args: {
-          _role: Database["public"]["Enums"]["app_role"]
-          _user_id: string
-        }
-        Returns: boolean
-      }
-      is_admin: { Args: never; Returns: boolean }
+      [_ in never]: never
     }
     Enums: {
-      app_role: "admin" | "user"
+      [_ in never]: never
     }
     CompositeTypes: {
       [_ in never]: never
@@ -394,8 +150,6 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {
-      app_role: ["admin", "user"],
-    },
+    Enums: {},
   },
 } as const
