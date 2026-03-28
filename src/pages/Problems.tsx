@@ -77,7 +77,7 @@ export default function Problems() {
 
       return matchesSearch && matchesDifficulty && matchesTopic;
     });
-  }, [searchTerm, selectedDifficulty, selectedTopic]);
+  }, [problems, searchTerm, selectedDifficulty, selectedTopic]);
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
