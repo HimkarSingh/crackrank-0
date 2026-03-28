@@ -146,12 +146,13 @@ serve(async (req) => {
           error: passed ? null : 'Output mismatch'
         };
 
-      } catch (error) {
+      } catch (error: unknown) {
+        const msg = error instanceof Error ? error.message : 'Unknown error';
         console.error(`Error running test case ${index + 1}:`, error);
         return {
           testCase: index + 1,
           passed: false,
-          error: error.message,
+          error: msg,
           expected: testCase.expectedOutput,
           actual: null
         };
