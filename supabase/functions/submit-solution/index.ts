@@ -49,10 +49,11 @@ serve(async (req) => {
       throw new Error(`Unsupported language: ${language}`);
     }
 
-    const judge0ApiKey = Deno.env.get('JUDGE0_API_KEY');
-    if (!judge0ApiKey) {
+    const judge0ApiKeyValue = Deno.env.get('JUDGE0_API_KEY');
+    if (!judge0ApiKeyValue) {
       throw new Error('Judge0 API key not configured');
     }
+    const judge0ApiKey: string = judge0ApiKeyValue;
 
     console.log(`Submitting solution for problem ${problemId} by user ${user.id}`);
 
