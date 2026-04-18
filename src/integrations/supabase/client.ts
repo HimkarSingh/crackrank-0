@@ -9,8 +9,17 @@ const SUPABASE_PUBLISHABLE_KEY =
   import.meta.env.VITE_SUPABASE_KEY;
 
 if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
+  const missingVars = [
+    !SUPABASE_URL ? "VITE_SUPABASE_URL" : null,
+    !SUPABASE_PUBLISHABLE_KEY
+      ? "VITE_SUPABASE_PUBLISHABLE_KEY (or VITE_SUPABASE_ANON_KEY / VITE_SUPABASE_KEY)"
+      : null,
+  ]
+    .filter(Boolean)
+    .join(", ");
+
   throw new Error(
-    "Supabase environment variables are missing. Set VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY (or VITE_SUPABASE_ANON_KEY / VITE_SUPABASE_KEY)."
+    `Supabase environment variables are missing: ${missingVars}.`
   );
 }
 
