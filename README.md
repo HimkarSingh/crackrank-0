@@ -60,7 +60,7 @@
    ```bash
    VITE_API_URL=your_api_url
    VITE_SUPABASE_URL=your_supabase_project_url
-   VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_anon_key
+   VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
    ```
    You can also use `VITE_SUPABASE_ANON_KEY` or `VITE_SUPABASE_KEY` as the key variable name.
 4. **Run development server**
@@ -73,7 +73,7 @@
 1. Open **Supabase Dashboard → Authentication → URL Configuration**.
 2. Set **Site URL**:
    - Local: `http://localhost:5173`
-   - Production: your deployed domain (for example `https://yourdomain.com`)
+   - Production: your deployed domain (for example, `https://yourdomain.com`)
 3. Add **Redirect URLs**:
    - `http://localhost:5173/`
    - `https://yourdomain.com/`
@@ -84,4 +84,3 @@
 5. In Google/GitHub OAuth app settings, add Supabase callback URL:
    - `https://<your-project-ref>.supabase.co/auth/v1/callback`
 6. If email signup is not completing, confirm **Authentication → Email** settings (confirmation email, templates, sender domain).
-
