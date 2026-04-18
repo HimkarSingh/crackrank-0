@@ -2,17 +2,14 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
-const supabaseUrlFromEnv = import.meta.env.VITE_SUPABASE_URL;
-const supabaseKeyFromEnv =
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_PUBLISHABLE_KEY =
   import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ||
   import.meta.env.VITE_SUPABASE_ANON_KEY ||
   import.meta.env.VITE_SUPABASE_KEY;
 
-const SUPABASE_URL = supabaseUrlFromEnv || "http://localhost:54321";
-const SUPABASE_PUBLISHABLE_KEY = supabaseKeyFromEnv || "missing-supabase-key";
-
-if (!supabaseUrlFromEnv || !supabaseKeyFromEnv) {
-  console.error(
+if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
+  throw new Error(
     "Supabase environment variables are missing. Set VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY (or VITE_SUPABASE_ANON_KEY / VITE_SUPABASE_KEY)."
   );
 }
