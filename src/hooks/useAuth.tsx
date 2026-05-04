@@ -22,13 +22,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
   const notifyMissingSupabase = (action: string) => {
-    const error = new Error("Supabase is not configured.");
     toast({
       title: "Supabase not configured",
       description: `Set VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY to ${action}.`,
       variant: "destructive",
     });
-    return { error };
+    return { error: new Error("Supabase is not configured.") };
   };
 
   useEffect(() => {
