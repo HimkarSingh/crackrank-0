@@ -8,7 +8,11 @@ const SUPABASE_PUBLISHABLE_KEY =
   import.meta.env.VITE_SUPABASE_ANON_KEY ||
   import.meta.env.VITE_SUPABASE_KEY;
 
-if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
+export const supabaseConfigured = Boolean(SUPABASE_URL && SUPABASE_PUBLISHABLE_KEY);
+const SUPABASE_FALLBACK_URL = "http://localhost:54321";
+const SUPABASE_FALLBACK_KEY = "SUPABASE_NOT_CONFIGURED";
+
+if (!supabaseConfigured) {
   const missingVars = [
     !SUPABASE_URL ? "VITE_SUPABASE_URL" : null,
     !SUPABASE_PUBLISHABLE_KEY
@@ -18,18 +22,22 @@ if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
     .filter(Boolean)
     .join(", ");
 
-  throw new Error(
-    `Supabase environment variables are missing: ${missingVars}.`
+  console.warn(
+    `Supabase environment variables are missing: ${missingVars}. Running in offline mode.`
   );
 }
 
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";
 
-export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+export const supabase = createClient<Database>(
+  SUPABASE_URL || SUPABASE_FALLBACK_URL,
+  SUPABASE_PUBLISHABLE_KEY || SUPABASE_FALLBACK_KEY,
+  {
   auth: {
     storage: localStorage,
     persistSession: true,
     autoRefreshToken: true,
   }
-});
+  }
+);

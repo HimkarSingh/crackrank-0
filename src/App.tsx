@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
+import { supabaseConfigured } from "@/integrations/supabase/client";
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
@@ -39,6 +40,14 @@ const App = () => (
           <AuthProvider>
             <div className="min-h-screen bg-background">
               <Navbar />
+              {!supabaseConfigured && (
+                <div className="border-b border-amber-500/30 bg-amber-500/10 text-amber-700">
+                  <div className="mx-auto max-w-7xl px-4 py-2 text-sm sm:px-6 lg:px-8">
+                    Supabase is not configured. Set VITE_SUPABASE_URL and
+                    VITE_SUPABASE_PUBLISHABLE_KEY to enable authentication and data features.
+                  </div>
+                </div>
+              )}
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/problems" element={<Problems />} />
