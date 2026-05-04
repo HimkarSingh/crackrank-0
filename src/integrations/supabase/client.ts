@@ -9,7 +9,7 @@ const SUPABASE_PUBLISHABLE_KEY =
   import.meta.env.VITE_SUPABASE_KEY;
 
 export const supabaseConfigured = Boolean(SUPABASE_URL && SUPABASE_PUBLISHABLE_KEY);
-const SUPABASE_FALLBACK_URL = "https://supabase.invalid";
+const SUPABASE_FALLBACK_URL = "http://localhost:54321";
 const SUPABASE_FALLBACK_KEY = "SUPABASE_NOT_CONFIGURED";
 
 if (!supabaseConfigured) {
